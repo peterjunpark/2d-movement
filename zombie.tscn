@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwjv8n2vv1elj"]
+
+[ext_resource type="Texture2D" uid="uid://bkk4tv3pf7h3d" path="res://assets/Zombie/Poses/zombie_idle.png" id="1_cy55c"]
+[ext_resource type="Script" path="res://scripts/Zombie/PlayerMovement.cs" id="1_wr3hd"]
+[ext_resource type="Texture2D" uid="uid://ch34awvfsiywm" path="res://assets/Zombie/Poses/zombie_walk1.png" id="3_ew38q"]
+[ext_resource type="Texture2D" uid="uid://dg3agcnpi0vsl" path="res://assets/Zombie/Poses/zombie_walk2.png" id="4_873vm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2uf5"]
+radius = 31.0
+height = 86.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r7g53"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ew38q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_873vm")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Zombie" type="CharacterBody2D"]
+script = ExtResource("1_wr3hd")
+
+[node name="IdleSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_cy55c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 12)
+shape = SubResource("CapsuleShape2D_e2uf5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(2.08165e-12, -30)
+zoom = Vector2(3, 3)
+
+[node name="WalkingSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r7g53")
+animation = &"Walk"
+frame_progress = 0.901744
